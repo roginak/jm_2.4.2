@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit user</title>
+</head>
+<body>
+
+<form th:method="post" th:action="@{/admin/edit}" th:object="${user}">
+    <input type="hidden" th:value="${user.id}" name="id">
+
+    <label>Login: </label>
+    <input type="text" th:field="*{login}" id="login"/>
+    <br><br>
+    <label>Name: </label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br><br>
+    <label>Surname: </label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+    <br><br>
+    <label>Position: </label>
+    <input type="text" th:field="*{position}" id="position"/>
+    <br><br>
+    <label>Salary: </label>
+    <input type="text" th:field="*{salary}" id="salary"/>
+    <br><br>
+    <label>Contact: </label>
+    <input type="text" th:field="*{contact}" id="contact"/>
+    <br><br>
+    <label>Enter new password: </label>
+    <input type="text" th:field="*{password}" id="password" value=""/>
+    <br><br>
+    <label>Choose new roles</label>
+    <select th:field="*{listRoles}" id="roles" name="roles" multiple>
+        <option th:each="role : ${roles}"
+                th:value="${role.getRoleName()}"
+                th:text="${role.getRoleName()}">
+        </option>
+    </select>
+    <br><br>
+    <input type="submit" value="Edit"/>
+</form>
+
+<br>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Sign Out</button>
+</form>
+
+</body>
+</html>

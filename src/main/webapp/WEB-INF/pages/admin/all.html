@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All users</title>
+</head>
+<body>
+
+<h2>All users</h2>
+
+<br>
+
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Login</th>
+        <th>Roles</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Position</th>
+        <th>Salary</th>
+        <th>Contact</th>
+    </tr>
+
+    <tr th:each="user : ${users}">
+        <td th:text="${user.getId()}"></td>
+        <td th:text="${user.getLogin()}"></td>
+        <td th:text="${user.getRoles()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getSurname()}"></td>
+        <td th:text="${user.getPosition()}"></td>
+        <td th:text="${user.getSalary()}"></td>
+        <td th:text="${user.getContact()}"></td>
+        <td>
+            <a th:href="@{/admin/edit/{id}(id=${user.id})}">Edit</a>
+            <a th:href="@{/admin/delete/{id}(id=${user.id})}">Delete</a>
+        </td>
+    </tr>
+
+</table>
+
+<br>
+
+<form action="admin/add">
+    <button>Add</button>
+</form>
+<br>
+<form th:action="@{/user}" method="get">
+    <button type="submit">Go to your user page</button>
+</form>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Sign Out</button>
+</form>
+
+</body>
+</html>
